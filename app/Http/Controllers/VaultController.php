@@ -82,13 +82,11 @@ class VaultController extends Controller
 
         $client = new \GuzzleHttp\Client(['headers' => $headers]);
 
-        $response = $client->request('GET', "$vaultURL/$secret");
+        $response = $client->request('GET', "$vaultURL/data/$secret");
 
         $kv = (json_decode((string) $response->getBody())->data->data);
 
-        dd($kv);
-
-        return view('show', compact('kv'));
+        return view('show', compact('kv', 'secret'));
     }
 
     /**
