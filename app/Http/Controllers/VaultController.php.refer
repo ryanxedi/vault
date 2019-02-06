@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use GuzzleHttp\Client as GuzzleClient;
+
+class VaultController extends Controller
+{
+	// private $client;
+
+	// public function __construct()
+	// {
+	//  	$this->client = new GuzzleClient([ 'base_uri' => config('services.vault.url') ]);
+	//  	$this->client->setDefaultOption('headers/X-Vault-Token', config('services.vault.token'));
+	// }
+
+    public function create(Request $request)
+    {
+		$vaultToken = env("VAULT_TOKEN");
+		$vaultURL = env("VAULT_URL");
+		$headers = ['X-Vault-Token' => $vaultToken];
+		$client = new \GuzzleHttp\Client(['headers' => $headers]);
+
+    	$alias = $request->input('alias');
+		$key = $request->input('key');
+		$value = $request->input('value');
+
+		$response = $this->client->request('POST', "$vaultURL/mysecret/$key");
+
+		dd($response);
+
+    }
+
+    public function show(Request $request)
+    {
+		$vaultToken = env("VAULT_TOKEN");
+		$vaultURL = env("VAULT_URL");
+		$headers = ['X-Vault-Token' => $vaultToken];
+		$client = new \GuzzleHttp\Client(['headers' => $headers]);
+	    // $alias = $request->input('alias');
+    	$alias = "mysecret";
+
+		$response = $client->request('GET', "$vaultURL/mysecret");
+
+		$kv = (json_decode((string) $response->getBody())->data->data);
+
+		dd($kv);
+
+    	return view('retrieve', compact('key', 'value'));
+    }
+ 
+}
