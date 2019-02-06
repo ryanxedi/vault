@@ -7,5 +7,7 @@ Open a command prompt
 	vault server -dev
 
 This starts Vault in development mode.
-Scroll up and locate the generated Root Token
+
+Scroll up and locate the generated Root Token.
+
 Add this to the VAULT_TOKEN .env variable
