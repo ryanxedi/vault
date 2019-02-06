@@ -24,7 +24,7 @@ class VaultController extends Controller
      */
     public function index()
     {
-        $response = $this->client->request('GET', "secret/metadata/?list=true", [ 'headers' => ['X-Vault-Token' => config('services.vault.token') ]]);
+        $response = $this->client->request('GET', "secret/metadata?list=true", [ 'headers' => ['X-Vault-Token' => config('services.vault.token') ]]);
 
         $list = json_decode((string) $response->getBody());
 
