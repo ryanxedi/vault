@@ -1,4 +1,4 @@
-			<a href="{{ url('/') }}">Index</a>
-            <a href="{{ url('/store') }}">Store</a>
+			<a href="{{ url('/') }}">HOME</a>
+<!--             <a href="{{ url('/store') }}">Store</a>
             <a href="{{ url('/') }}">Retrieve</a>
-            <a href="{{ url('/destroy') }}">Destroy</a>
+            <a href="{{ url('/destroy') }}">Destroy</a> -->

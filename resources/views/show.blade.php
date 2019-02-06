@@ -1,4 +1,6 @@
 @extends ('layouts.header')
+
+
     <body>
     <div class="flex-center position-ref full-height">
         <div class="top-right links">
@@ -8,23 +10,17 @@
                 <div class="title m-b-md">
                     {{$secret}}
                 </div>
-                <div class="col-md-6" style="font-family: Courier New, Courier; text-align:right">
+                <div class="col-md-12" style="font-family: Courier New, Courier;">
                     <h2>
-                        Key:<br>
-                        Value: 
+                        @foreach ($kv as $key => $value) 
+                            <div id="key" class="col-md-6" style="text-align:right;">
+                               {{ $key }} :
+                            </div>
+                            <div id="value" class="col-md-6" style="text-align:left;">
+                               {{ $value }}
+                            </div>
+                        @endforeach   
                     </h2>
-                </div>
-                <div class="col-md-6" style="font-family: Courier New, Courier; text-align:left">
-<!--                     <h2>
-                        username<br>
-                        ryan
-                    </h2> -->
-                
-                    @foreach($kv as $info)
-                        @foreach(explode('.', $info) as $string)
-                            {{ $string }}
-                        @endforeach
-                    @endforeach
                 </div>
             </div>
         </div>
