@@ -188,8 +188,6 @@ class VaultController extends Controller
 
         $response = $client->request('DELETE', "$vaultURL/metadata/$alias");
 
-        dd($alias);
-
         return redirect()->route('home');
     }
 }
