@@ -18,10 +18,6 @@
 
 Route::get('/', 'VaultController@index')->name('home');
 
-Route::get('/store', function () {
-    return view('store');
-});
-
 Route::post('/store', 'VaultController@store');
 
 Route::get('/show/{secret}', 'VaultController@show');

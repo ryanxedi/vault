@@ -110,13 +110,20 @@ class VaultController extends Controller
 
         $client = new \GuzzleHttp\Client(['headers' => $headers]);
 
+        $status = $this->checkStatus();
+
         $alias = $request->input('alias');
         $key = $request->input('key');
         $value = $request->input('value');
-
-        $response = $client->request('POST', "$vaultURL/data/$alias", [
+       
+        try {
+            $response = $client->request('POST', "$vaultURL/data/$alias", [
             'json' => ['data' => [$key => $value]]
         ]);
+        } catch (ClientException | ConnectException $e) {
+            return view('unauthenticated');
+        }
+
 
         return redirect()->route('home');
     }

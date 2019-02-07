@@ -105,10 +105,3 @@
             }
         </style>
     </head>
-    <body>
-    <div class="flex-center position-ref full-height">
-        <div class="top-right links">
-            <a href="{{ url('/store') }}">Store</a>
-            <a href="{{ url('/') }}">Retrieve</a>
-            <a href="{{ url('/destroy') }}">Destroy</a>
-        </div>
