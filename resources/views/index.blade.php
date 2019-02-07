@@ -28,21 +28,26 @@
                         Stored Secrets
                     </div>
 
-                    @foreach($keys as $key)
+                    @if($keys === [])
                         <div class="col-md-12">
-                            <form action="/destroy" method="POST" enctype="application/json">
-                            @csrf
-                                <div class="col-md-6" style="font-size: 32px;">
-                                    <a href="/show/{{$key}}">{{$key}}</a>  
-                                    <input type="hidden" name="alias" value="{{$key}}">
-                                </div>
-                                <div class="col-md-6">
-<!--                                     <button class="btn btn-primary" style="margin:5px" type="submit">View</button> -->
-                                    <button class="btn btn-danger" style="margin:5px; width:100%" type="submit">Destroy</button>
-                                </div>
-                            </form>
+                            <h4 style="text-align: center">No secrets yet!</h4>
                         </div>
-                    @endforeach
+                    @else
+                        @foreach($keys as $key)
+                            <div class="col-md-12">
+                                <form action="/destroy" method="POST" enctype="application/json">
+                                @csrf
+                                    <div class="col-md-6" style="font-size: 32px;">
+                                        <a href="/show/{{$key}}">{{$key}}</a>  
+                                        <input type="hidden" name="alias" value="{{$key}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-danger" style="margin:5px; width:100%" type="submit">Destroy</button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
