@@ -124,7 +124,6 @@ class VaultController extends Controller
             return view('unauthenticated');
         }
 
-
         return redirect()->route('home');
     }
 
@@ -146,7 +145,7 @@ class VaultController extends Controller
 
         $kv = (json_decode((string) $response->getBody())->data->data);
 
-        return view('show', compact('kv', 'secret'));
+        return view('show', compact('kv', 'secret', 'alias'));
     }
 
     /**
@@ -188,6 +187,8 @@ class VaultController extends Controller
         $alias = $request->input('alias');
 
         $response = $client->request('DELETE', "$vaultURL/metadata/$alias");
+
+        dd($alias);
 
         return redirect()->route('home');
     }

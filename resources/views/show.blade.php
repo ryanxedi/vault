@@ -13,6 +13,13 @@
                             <div id="value" class="col-md-6" style="text-align:left;">{{ $value }}</div>
                         @endforeach   
                     </h2>
+
+                    <form action="/destroy" method="POST" enctype="application/json">
+                    @csrf
+                        <input type="hidden" name="alias" value="{{$secret}}">
+                        <button class="btn btn-danger" style="margin:5px; width:100%" type="submit">Destroy</button>
+                    </form>
+
                     <h4><a href="/">Go back</a></h4>
                 </div>
             </div>
