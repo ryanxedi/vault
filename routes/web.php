@@ -22,5 +22,4 @@ Route::post('/store', 'VaultController@store');
 
 Route::get('/show/{secret}', 'VaultController@show');
 
-Route::get('/destroy', function () {return view('destroy');});
 Route::post('/destroy', 'VaultController@destroy');
